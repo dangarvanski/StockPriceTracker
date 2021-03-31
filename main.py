@@ -1,9 +1,7 @@
 import StockClient
 import time
-from random import randint
-from tkinter import *
-import json
 import ApiValues
+from tkinter import *
 
 '''
 stocks = []
@@ -14,7 +12,7 @@ stock2 = StockClient.get_StockData('https://finance.yahoo.com/quote/BTC-USD?p=BT
 
 
 '''
-'''
+
 class Root(Tk):
     def __init__(self):
         super(Root, self).__init__()
@@ -28,30 +26,17 @@ root.mainloop()
 
 i = 0
 currentStockPrice = None
-while i <= 10:
-    stock2 = StockClient.get_StockData('https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch')
-    if currentStockPrice != stock2.Price:
-        print(stock2.Name)
-        print(stock2.Price)
-    currentStockPrice = stock2.Price
-    #seed(1)
-    randomNumber = randint(5, 20)
-    print("I'm waiting for " + str(randomNumber) + " seconds.")
-    time.sleep(randomNumber)
-'''
 pageUrl = 'https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch'
 updateUrl = 'https://query1.finance.yahoo.com/v7/finance/quote?&symbols=BTC-USD&fields=extendedMarketChange,extendedMarketChangePercent,extendedMarketPrice,extendedMarketTime,regularMarketChange,regularMarketChangePercent,regularMarketPrice,regularMarketTime,circulatingSupply,ask,askSize,bid,bidSize,dayHigh,dayLow,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume,volume'
 
-stock2 = StockClient.get_StockUpdate(updateUrl)
+stockWebPage = StockClient.get_StockWebPageData(pageUrl)
+print(StockClient.get_stockName(stockWebPage))
+print('Current Price: ')
+while i <= 10:
+    updateResponse = StockClient.get_StockUpdate(updateUrl)
+    stockPrice = StockClient.get_Info(updateResponse, ApiValues.DataType.REGULAR_MARKET_PRICE.value)
 
-print(StockClient.get_Info(stock2, ApiValues.DataType.REGULAR_MARKET_PRICE.value))
-print(StockClient.get_StockWebPageData(pageUrl).Name + StockClient.get_StockWebPageData(pageUrl).Price)
-
-'''
-json_object = json.loads(stock2)
-quoteResponse = json_object["quoteResponse"]
-result = quoteResponse["result"]
-for item in result[0].items():
-    print(item[1])
-
-'''
+    if currentStockPrice != stockPrice:
+        print(stockPrice)
+    currentStockPrice = stockPrice
+    time.sleep(3)
