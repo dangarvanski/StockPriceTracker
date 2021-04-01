@@ -1,4 +1,4 @@
-class Request:
+class YahooRequest:
     def __init__(self, symbol='', region=''):
         self._symbol = symbol
         self._region = region
