@@ -26,8 +26,11 @@ responsePython.Price.RegularMarketOpen = YahooResponse.RegularMarketOpen(regular
 averageDailyVolume3Month = price["averageDailyVolume3Month"]
 responsePython.Price.AverageDailyVolume3Month = YahooResponse.AverageDailyVolume3Month(averageDailyVolume3Month["raw"], averageDailyVolume3Month["fmt"], averageDailyVolume3Month["longFmt"])
 
+responsePython.Price.Exchange = price["exchange"]
 
 print('Average Daily Volume 3 Month')
-print(responsePython.Price.AverageDailyVolume3Month.raw)
-print(responsePython.Price.AverageDailyVolume3Month.fmt)
-print(responsePython.Price.AverageDailyVolume3Month.longFmt)
+print('Raw: ' + str(responsePython.Price.AverageDailyVolume3Month.raw))
+print('Fmt: ' + str(responsePython.Price.AverageDailyVolume3Month.fmt))
+print('Long Fmt: ' + str(responsePython.Price.AverageDailyVolume3Month.longFmt))
+
+print('Exchange: ' + responsePython.Price.Exchange)
