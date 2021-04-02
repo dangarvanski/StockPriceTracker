@@ -1,22 +1,9 @@
 class YahooResponse:
     FinancialsTemplate = None
     Price = None
-
-    # getter method
-    def get_financials_template(self):
-        return self.financialsTemplate
-
-    # setter method
-    def set_financials_template(self, x):
-        self.financialsTemplate = x
-    # getter method
-
-    def get_price(self):
-        return self.Price
-
-    # setter method
-    def set_price(self, x):
-        self.Price = x
+    SecFilings = None
+    QuoteType = None
+    CalendarEvents = None
 
 
 class RegularMarketOpen:
@@ -32,20 +19,105 @@ class AverageDailyVolume3Month:
         self.longFmt = long_fmt
 
 
+class Volume24Hr:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class RegularMarketDayHigh:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
+class AverageDailyVolume10Day:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class RegularMarketChange:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
+class RegularMarketPreviousClose:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
+class CirculatingSupply:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class RegularMarketDayLow:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
+class PriceHint:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class RegularMarketPrice:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
+class RegularMarketVolume:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class MarketCap:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class VolumeAllCurrencies:
+    def __init__(self, raw, fmt, long_fmt):
+        self.raw = raw
+        self.fmt = fmt
+        self.longFmt = long_fmt
+
+
+class RegularMarketChangePercent:
+    def __init__(self, raw, fmt):
+        self.raw = raw
+        self.fmt = fmt
+
+
 class Price:
     QuoteSourceName = None
     RegularMarketOpen = RegularMarketOpen(None, None)
     AverageDailyVolume3Month = AverageDailyVolume3Month(None, None, None)
     Exchange = None
     RegularMarketTime = None
-    Volume24Hr = None
-    RegularMarketDayHigh = None
+    Volume24Hr = Volume24Hr(None, None, None)
+    RegularMarketDayHigh = RegularMarketDayHigh(None, None)
     ShortName = None
-    AverageDailyVolume10Day = None
+    AverageDailyVolume10Day = AverageDailyVolume10Day(None, None, None)
     LongName = None
-    RegularMarketChange = None
+    RegularMarketChange = RegularMarketChange(None, None)
     CurrencySymbol = None
-    RegularMarketPreviousClose = None
+    RegularMarketPreviousClose = RegularMarketPreviousClose(None, None)
     PreMarketPrice = None
     ExchangeDataDelayedBy = 0
     ToCurrency = None
@@ -53,94 +125,35 @@ class Price:
     PostMarketPrice = None
     ExchangeName = None
     PreMarketChange = None
-    CirculatingSupply = None
-    RegularMarketDayLow = None
-    PriceHint = None
+    CirculatingSupply = CirculatingSupply(None, None, None)
+    RegularMarketDayLow = RegularMarketDayLow(None, None)
+    PriceHint = PriceHint(None, None, None)
     Currency = None
-    RegularMarketPrice = None
-    RegularMarketVolume = None
+    RegularMarketPrice = RegularMarketPrice(None, None)
+    RegularMarketVolume = RegularMarketVolume(None, None, None)
     LastMarket = None
     RegularMarketSource = None
     OpenInterest = None
     MarketState = None
     UnderlyingSymbol = None
-    MarketCap = None
+    MarketCap = MarketCap(None, None, None)
     QuoteType = None
-    VolumeAllCurrencies = None
+    VolumeAllCurrencies = VolumeAllCurrencies(None, None, None)
     StrikePrice = None
     Symbol = None
     MaxAge = 0
     FromCurrency = None
-    RegularMarketChangePercent = None
+    RegularMarketChangePercent = RegularMarketChangePercent(None, None)
 
 
-class Volume24Hr:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class RegularMarketDayHigh:
-    raw = 0
-    fmt = 0
-
-
-class AverageDailyVolume10Day:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class RegularMarketChange:
-    raw = 0
-    fmt = 0
-
-
-class RegularMarketPreviousClose:
-    raw = 0
-    fmt = 0
-
-
-class CirculatingSupply:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class RegularMarketDayLow:
-    raw = 0
-    fmt = 0
-
-
-class PriceHint:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class RegularMarketPrice:
-    raw = 0
-    fmt = 0
-
-
-class RegularMarketVolume:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class MarketCap:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class VolumeAllCurrencies:
-    raw = 0
-    fmt = 0
-    longFmt = 0
-
-
-class RegularMarketChangePercent:
-    raw = 0
-    fmt = 0
+class QuoteType:
+    Exchange = None
+    ShortName = None
+    ExchangeTimezoneName = None
+    ExchangeTimezoneShortName = None
+    IsEsgPopulated = None
+    GmtOffSetMilliseconds = None
+    QuoteType = None
+    Symbol = None
+    MessageBoardId = None
+    Market = None
