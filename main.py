@@ -2,30 +2,12 @@ import threading
 import StockClient
 import time
 import ApiValues
-from tkinter import *
-
-
-'''
-stocks = []
->>>>>>> parent of abb5dfa (RapidApiFirstIntegration)
-
-stock = StockClient.get_StockData('https://finance.yahoo.com/quote/TSLA/')
-stock1 = StockClient.get_StockData('https://finance.yahoo.com/quote/NVDA?p=NVDA&.tsrc=fin-srch')
-stock2 = StockClient.get_StockData('https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch')
-
-#Coverting response to json
-responseJson = json.loads(response.text)
-
-#responsePython = ResponseMapper.map_response(responseJson)
-responsePythonV2 = ResponseMapper.map_responseV2(responseJson)
-
-#print('Assets Company Officers: ' + str(responsePython.AssetProfile.CompanyOfficers))
-#print('Assets Name: ' + str(responsePython.AssetProfile.Name))
-
-print('Response V2: ' + str(responsePythonV2.FinancialsTemplate.code))
-print('Response V2: ' + str(responsePythonV2.FinancialsTemplate.max_age))
-
-'''
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWidget
+import sys
 
 pageUrl = 'https://finance.yahoo.com/quote/BTC-USD?p=BTC-USD&.tsrc=fin-srch'
 updateUrl = 'https://query1.finance.yahoo.com/v7/finance/quote?&symbols=BTC-USD&fields=extendedMarketChange,extendedMarketChangePercent,extendedMarketPrice,extendedMarketTime,regularMarketChange,regularMarketChangePercent,regularMarketPrice,regularMarketTime,circulatingSupply,ask,askSize,bid,bidSize,dayHigh,dayLow,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume,volume'
@@ -42,9 +24,6 @@ def start_loop():
 
         if currentStockPrice != stockPrice:
             print(stockPrice)
-            priceLabel = Label(root, text=stockPrice)
-            priceLabel.grid(row=3, column=1)
-            #priceLabel.pack()
         currentStockPrice = stockPrice
         time.sleep(3)
 
@@ -52,20 +31,23 @@ def start_thread():
     t1 = threading.Thread(target=start_loop)
     t1.start()
 
-class Root(Tk):
+
+class Window(QMainWindow):
     def __init__(self):
-        super(Root, self).__init__()
+        super().__init__()
 
-        self.title("Stock Price Tracker")
-        self.minsize(500, 400)
+        self.layout = QVBoxLayout()
 
-root = Root()
+        self.label = QLabel("My text")
+        self.layout.addWidget(self.label)
 
-myLabel = Label(root, text=stockName)
-myLabel.grid(row=1, column=1)
+        self.setGeometry(300, 300, 600, 400)
+        self.setLayout(self.layout)
+        self.setWindowTitle("Stock Price Tracker")
+        #self.show()
 
-myButton = Button(root, text="Get Price", command=lambda: start_thread())
-myButton.grid(row=2, column=1)
 
-root.mainloop()
-
+app = QApplication(sys.argv)
+window = Window()
+window.show()
+sys.exit(app.exec_())
